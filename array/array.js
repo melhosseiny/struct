@@ -56,6 +56,20 @@ function HighArray(spec = {a: [], nElems: 0}) {
     }
   }
 
+  let selectSort = function() {
+    let min;
+
+    for (i = 0; i < nElems-1; i++) {
+      min = i;
+      for (j = i+1; j < nElems; j++) {
+        if (a[j] < a[min]) {
+          min = j;
+        }
+      }
+      swap(i,min);
+    }
+  }
+
   let swap = function(one,two) {
     let temp = a[two];
     a[two] = a[one];
@@ -80,6 +94,7 @@ function HighArray(spec = {a: [], nElems: 0}) {
     find,
     remove,
     bubbleSort,
+    selectSort,
     display,
     getSize
   });
@@ -117,5 +132,6 @@ arr.remove(99);
 arr.display();
 console.log(arr.getSize());
 
-arr.bubbleSort();
+//arr.bubbleSort();
+arr.selectSort();
 arr.display();
