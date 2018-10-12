@@ -1,4 +1,4 @@
-function HighArray(spec = {a: [], nElems: 0}) {
+export function HighArray(spec = {a: [], nElems: 0}) {
   let {a,nElems} = spec;
 
   let setElem = function (i, v) {
@@ -47,8 +47,8 @@ function HighArray(spec = {a: [], nElems: 0}) {
   }
 
   let bubbleSort = function() {
-    for (i = nElems - 1; i > 1; i--) {
-      for (j = 0; j < i; j++) {
+    for (let i = nElems - 1; i > 1; i--) {
+      for (let j = 0; j < i; j++) {
         if (a[j] > a[j+1]) {
           swap(j,j+1);
         }
@@ -59,9 +59,9 @@ function HighArray(spec = {a: [], nElems: 0}) {
   let selectSort = function() {
     let min;
 
-    for (i = 0; i < nElems-1; i++) {
+    for (let i = 0; i < nElems-1; i++) {
       min = i;
-      for (j = i+1; j < nElems; j++) {
+      for (let j = i+1; j < nElems; j++) {
         if (a[j] < a[min]) {
           min = j;
         }
@@ -77,7 +77,7 @@ function HighArray(spec = {a: [], nElems: 0}) {
   }
 
   let display = function() {
-    for (j = 0; j < nElems; j++) {
+    for (let j = 0; j < nElems; j++) {
       process.stdout.write(a[j] + " ");
     }
     process.stdout.write("\n");
@@ -110,7 +110,7 @@ arr.insert(55);
 arr.insert(22);
 arr.insert(88);
 arr.insert(11);
-arr.insert(00);
+arr.insert(0);
 arr.insert(66);
 arr.insert(33);
 
@@ -125,7 +125,7 @@ if (result) {
   console.log("Can't find", searchKey);
 }
 
-arr.remove(00);
+arr.remove(0);
 arr.remove(55);
 arr.remove(99);
 

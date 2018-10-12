@@ -1,4 +1,4 @@
-function OrdArray(spec = {a: [], nElems: 0}) {
+export function OrdArray(spec = {a: [], nElems: 0}) {
   let {a,nElems} = spec;
 
   let setElem = function (i, v) {
@@ -55,7 +55,7 @@ function OrdArray(spec = {a: [], nElems: 0}) {
   }
 
   let display = function() {
-    for (j = 0; j < nElems; j++) {
+    for (let j = 0; j < nElems; j++) {
       process.stdout.write(a[j] + " ");
     }
     process.stdout.write("\n");
