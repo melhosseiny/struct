@@ -70,6 +70,20 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     }
   }
 
+  let insertSort = function() {
+    let temp;
+
+    for (let i = 1; i < nElems; i++) {
+      temp = a[i];
+      let j = i;
+      for (j = i; j > 0; j--) {
+        if (a[j-1] < temp) { break; }
+        else { a[j] = a[j-1]; }
+      }
+      a[j] = temp;
+    }
+  }
+
   let swap = function(one,two) {
     let temp = a[two];
     a[two] = a[one];
@@ -95,6 +109,7 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     remove,
     bubbleSort,
     selectSort,
+    insertSort,
     display,
     getSize
   });
@@ -133,5 +148,6 @@ arr.display();
 console.log(arr.getSize());
 
 //arr.bubbleSort();
-arr.selectSort();
+//arr.selectSort();
+arr.insertSort();
 arr.display();

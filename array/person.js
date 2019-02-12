@@ -7,12 +7,17 @@ function Person(spec) {
       ", Age:", age);
   }
 
+  let getAge = function() {
+    return age;
+  }
+
   let getLast = function() {
     return lastName;
   }
 
   return Object.freeze({
     display,
+    getAge,
     getLast
   });
 }
@@ -65,6 +70,20 @@ function DataArray(spec = {a: [], nElems: 0}) {
     }
   }
 
+  let insertSort = function() {
+    let temp;
+
+    for (let i = 1; i < nElems; i++) {
+      temp = a[i];
+      let j = i;
+      for (j = i; j > 0; j--) {
+        if (a[j-1].getAge() < temp.getAge()) { break; }
+        else { a[j] = a[j-1]; }
+      }
+      a[j] = temp;
+    }
+  }
+
   let display = function() {
     for (j = 0; j < nElems; j++) {
       a[j].display();
@@ -81,6 +100,7 @@ function DataArray(spec = {a: [], nElems: 0}) {
     insert,
     find,
     remove,
+    insertSort,
     display,
     getSize
   });
@@ -116,3 +136,6 @@ arr.remove("Creswell");
 
 arr.display();
 console.log(arr.getSize());
+
+arr.insertSort();
+arr.display();

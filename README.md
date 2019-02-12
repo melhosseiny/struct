@@ -2,8 +2,8 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 
 | Feature          | Status      |
 |------------------|-------------|
-| array            | In-progress |
-| array_ordered    | In-progress |
+| array            | Completed   |
+| array_ordered    | Completed   |
 | stack            | Completed   |
 | queue            | Completed   |
 | linkedlist       | Not started |
