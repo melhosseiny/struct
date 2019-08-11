@@ -6,13 +6,13 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 | array_ordered    | Completed   |
 | stack            | Completed   |
 | queue            | Completed   |
-| linkedlist       | Not started |
+| linkedlist       | In progress |
 | tree_binary      | Not started |
 | tree_rb          | Not started |
 | tree_234         | Not started |
 | hash             | Not started |
 | heap             | Not started |
-| graph            | In-progress |
+| graph            | In progress |
 
 This project uses the experimental ESM Module loader
 
