@@ -1,0 +1,25 @@
+{
+  "name": "struct",
+  "version": "0.0.1",
+  "description": "Data structure library for JavaScript",
+  "license": "CC-BY-NC-ND-4.0",
+  "author": "Mostafa Elshamy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/melhosseiny/struct.git"
+  },
+  "scripts": {
+    "test": "npx jest"
+  },
+  "bugs": {
+    "url": "https://github.com/melhosseiny/struct/issues"
+  },
+  "homepage": "https://github.com/melhosseiny/struct#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "babel-jest": "^25.2.4",
+    "jest": "^25.2.4"
+  }
+}

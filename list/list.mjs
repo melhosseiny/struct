@@ -1,4 +1,4 @@
-import {Link} from './link';
+import {Link} from './link.mjs';
 
 export function List(spec) {
   let {first} = spec;

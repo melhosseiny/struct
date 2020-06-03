@@ -9,17 +9,36 @@ export function OrdArray(spec = {a: [], nElems: 0}) {
     return a[i];
   }
 
+  let getArray = function() {
+    return a;
+  }
+
+  let setArray = function(array) {
+    a = array;
+    nElems = a.length;
+  }
+
   let insert = function(value) {
-    let j;
-    for (j = 0; j < nElems; j++) {
-      if (a[j] > value) {
-        break;
+    let l = 0;
+    let u = nElems - 1;
+    let i = 0;
+
+    while (l <= u) {
+      i = Math.floor((l+u)/2);
+
+      if (value < a[i]) {
+        u = i - 1;
+      } else if (value > a[i]) {
+        l = i + 1;
+        i++;
       }
     }
-    for (let k = nElems; k > j; k--) {
-      a[k] = a[k-1];
+
+    for (let j = nElems; j > i; j--) {
+      a[j] = a[j-1];
     }
-    a[j] = value;
+
+    a[i] = value;
     nElems++;
   }
 
@@ -65,14 +84,43 @@ export function OrdArray(spec = {a: [], nElems: 0}) {
     return nElems;
   }
 
+  // pp
+  let merge = function(arr_b) {
+    let c = [];
+    let b = arr_b.getArray();
+
+    let s1 = a.length >= b.length ? a : b;
+    let s2 = a.length >= b.length ? b : a;
+
+    for (let i = 0, j= 0; i < s1.length; i++) {
+      for (; j < s2.length && s2[j] < s1[i]; j++) {
+        c[i+j] = s2[j];
+      }
+      c[i+j] = s1[i];
+      if (i === s1.length - 1) {
+        for (; j < s2.length; j++) {
+          c[i+j+1] = s2[j];
+        }
+      }
+    }
+
+    let arr_c = OrdArray();
+    arr_c.setArray(c);
+    return arr_c;
+  }
+
   return Object.freeze({
     setElem,
     getElem,
+    getArray,
+    setArray,
     insert,
     find,
     remove,
     display,
-    size
+    size,
+    // pp
+    merge,
   });
 }
 
@@ -107,3 +155,23 @@ arr.remove(99);
 
 arr.display();
 console.log(arr.size());
+
+// pp
+let arr_a = OrdArray();
+arr_a.insert(77);
+arr_a.insert(99);
+arr_a.insert(33);
+arr_a.insert(55);
+
+let arr_b = OrdArray();
+arr_b.insert(22);
+arr_b.insert(44);
+arr_b.insert(11);
+arr_b.insert(0);
+arr_b.insert(54);
+arr_b.insert(98);
+
+let arr_c = arr_a.merge(arr_b);
+
+console.log("merge");
+arr_c.display();

@@ -1,4 +1,4 @@
-export function PriorityQueue(spec = {a: [], nElems: 0}) {
+export function PQueue(spec = {a: [], nElems: 0}) {
   let {a, nElems} = spec;
 
   let nItems = 0;
@@ -57,7 +57,7 @@ export function PriorityQueue(spec = {a: [], nElems: 0}) {
   })
 }
 
-let q = PriorityQueue({a: [], nElems: 5});
+let q = PQueue({a: [], nElems: 5});
 
 try {
   q.insert(30);

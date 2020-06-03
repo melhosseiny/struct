@@ -1,5 +1,5 @@
-import {Stack} from '../stack/stack';
-import {Queue} from '../queue/queue';
+import {Stack} from '../stack/stack.mjs';
+import {Queue} from '../queue/queue.mjs';
 
 function Vertex(spec) {
   let {label} = spec;
