@@ -96,6 +96,19 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     }
   }
 
+  let listInsertSort = async function() {
+    const {SortedList} = await import('../list/list_sorted.mjs');
+
+    let list = SortedList();
+    for (let i = 0; i < nElems; i++) {
+      list.insert(a[i]);
+    }
+
+    for (let i = 0; i < nElems; i++) {
+      a[i] = list.remove().getData();
+    }
+  }
+
   let equal = function(a, b) {
     if (typeof b === 'object') {
       const entries = Object.entries(b);
@@ -212,6 +225,7 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     bubbleSort,
     selectSort,
     insertSort,
+    listInsertSort,
     display,
     getSize,
     // pp
@@ -221,98 +235,104 @@ export function HighArray(spec = {a: [], nElems: 0}) {
   });
 }
 
-let arr = HighArray();
+const main = async () => {
+  let arr = HighArray();
 
-// init array with 10 items
-arr.insert(77);
-arr.insert(99);
-arr.insert(44);
-arr.insert(55);
-arr.insert(22);
-arr.insert(88);
-arr.insert(11);
-arr.insert(0);
-arr.insert(66);
-arr.insert(33);
+  // init array with 10 items
+  arr.insert(77);
+  arr.insert(99);
+  arr.insert(44);
+  arr.insert(55);
+  arr.insert(22);
+  arr.insert(88);
+  arr.insert(11);
+  arr.insert(0);
+  arr.insert(66);
+  arr.insert(33);
 
-arr.display();
-console.log(arr.getSize());
+  arr.display();
+  console.log(arr.getSize());
 
-let searchKey = 33;
-let result = arr.find(searchKey);
-if (result) {
-  console.log("Found", searchKey, "at index", result);
-} else {
-  console.log("Can't find", searchKey);
+  let searchKey = 33;
+  let result = arr.find(searchKey);
+  if (result) {
+    console.log("Found", searchKey, "at index", result);
+  } else {
+    console.log("Can't find", searchKey);
+  }
+
+  arr.remove(0);
+  arr.remove(55);
+  arr.remove(99);
+
+  arr.display();
+  console.log(arr.getSize());
+
+  console.log("Sorted array:");
+  //arr.bubbleSort();
+  //arr.selectSort();
+  arr.insertSort();
+  //await arr.listInsertSort();
+  arr.display();
+
+  // pp 2.3
+  let arr2 = HighArray();
+
+  arr2.insert(77);
+  arr2.insert(99);
+  arr2.insert(44);
+  arr2.insert(55);
+  arr2.insert(22);
+  arr2.insert(88);
+  arr2.insert(11);
+  arr2.insert(0);
+  arr2.insert(66);
+  arr2.insert(33);
+
+  arr2.display();
+
+  let crudelySortedArr = HighArray();
+
+  while (arr2.getSize() !== 0) {
+    crudelySortedArr.insert(arr2.removeMax());
+  }
+
+  crudelySortedArr.display();
+
+  // object data
+  let people = HighArray();
+
+  people.insert({lastName: "Evans", firstName: "Patty", age: 24});
+  people.insert({lastName: "Smith", firstName: "Lorraine", age: 37});
+  people.insert({lastName: "Yee", firstName: "Tom", age: 43});
+  people.insert({lastName: "Adams", firstName: "Henry", age: 63});
+  people.insert({lastName: "Hashimoto", firstName: "Sato", age: 21});
+  people.insert({lastName: "Stimson", firstName: "Henry", age: 29});
+  people.insert({lastName: "Velasquez", firstName: "Jose", age: 72});
+  people.insert({lastName: "Lamarque", firstName: "Henry", age: 54});
+  people.insert({lastName: "Vang", firstName: "Minh", age: 22});
+  people.insert({lastName: "Creswell", firstName: "Lucinda", age: 18});
+
+  people.display();
+
+  let resultIndex = people.find({ lastName: "Stimson" });
+  if (resultIndex) {
+    console.log("Found at index", resultIndex);
+  } else {
+    console.log("Can't find searchKey");
+  }
+
+  people.remove({ lastName: "Smith" });
+  people.remove({ lastName: "Yee" });
+  people.remove({ lastName: "Creswell" });
+
+  people.display();
+  console.log(people.getSize());
+
+  const comparePeopleByAge = (a, b) => a.age < b.age ? -1 : (a.age > b.age ? 1 : 0);
+
+  people.insertSort(comparePeopleByAge);
+  people.display();
 }
 
-arr.remove(0);
-arr.remove(55);
-arr.remove(99);
-
-arr.display();
-console.log(arr.getSize());
-
-arr.bubbleSort();
-//arr.selectSort();
-//arr.insertSort();
-arr.display();
-
-// pp 2.3
-let arr2 = HighArray();
-
-arr2.insert(77);
-arr2.insert(99);
-arr2.insert(44);
-arr2.insert(55);
-arr2.insert(22);
-arr2.insert(88);
-arr2.insert(11);
-arr2.insert(0);
-arr2.insert(66);
-arr2.insert(33);
-
-arr2.display();
-
-let crudelySortedArr = HighArray();
-
-while (arr2.getSize() !== 0) {
-  crudelySortedArr.insert(arr2.removeMax());
-}
-
-crudelySortedArr.display();
-
-// object data
-let people = HighArray();
-
-people.insert({lastName: "Evans", firstName: "Patty", age: 24});
-people.insert({lastName: "Smith", firstName: "Lorraine", age: 37});
-people.insert({lastName: "Yee", firstName: "Tom", age: 43});
-people.insert({lastName: "Adams", firstName: "Henry", age: 63});
-people.insert({lastName: "Hashimoto", firstName: "Sato", age: 21});
-people.insert({lastName: "Stimson", firstName: "Henry", age: 29});
-people.insert({lastName: "Velasquez", firstName: "Jose", age: 72});
-people.insert({lastName: "Lamarque", firstName: "Henry", age: 54});
-people.insert({lastName: "Vang", firstName: "Minh", age: 22});
-people.insert({lastName: "Creswell", firstName: "Lucinda", age: 18});
-
-people.display();
-
-let resultIndex = people.find({ lastName: "Stimson" });
-if (resultIndex) {
-  console.log("Found at index", resultIndex);
-} else {
-  console.log("Can't find searchKey");
-}
-
-people.remove({ lastName: "Smith" });
-people.remove({ lastName: "Yee" });
-people.remove({ lastName: "Creswell" });
-
-people.display();
-console.log(people.getSize());
-
-const comparePeopleByAge = (a, b) => a.age < b.age ? -1 : (a.age > b.age ? 1 : 0);
-
-people.insertSort(comparePeopleByAge);
-people.display();
+main();

@@ -1,7 +1,8 @@
 import util from 'util';
 
-export function Link(spec) {
+export function DoubleLink(spec) {
   let {data} = spec;
+  let previous = undefined;
   let next = undefined;
 
   let getData = function() {
@@ -10,6 +11,14 @@ export function Link(spec) {
 
   let setData = function(value) {
     data = value;
+  }
+
+  let getPrevious = function() {
+    return previous;
+  }
+
+  let setPrevious = function(link) {
+    previous = link;
   }
 
   let getNext = function() {
@@ -27,6 +36,8 @@ export function Link(spec) {
   return Object.freeze({
     getData,
     setData,
+    getPrevious,
+    setPrevious,
     getNext,
     setNext,
     display

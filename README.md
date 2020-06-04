@@ -2,12 +2,12 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 
 | Feature          | Status      | Tests |
 |------------------|-------------|-------|
-| array            | Completed   |       |
-| array_ordered    | Completed   |       |
-| stack            | Completed   | Yes   |
-| queue            | Completed   | Yes   |
-| linkedlist       | In progress |       |
-| tree_binary      | Not started |       |
+| array            | Complete    |       |
+| array_ordered    | Complete    |       |
+| stack            | Complete    | Yes   |
+| queue            | Complete    | Yes   |
+| linkedlist       | Complete    |       |
+| tree_binary      | In progress |       |
 | tree_rb          | Not started |       |
 | tree_234         | Not started |       |
 | hash             | Not started |       |

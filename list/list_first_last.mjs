@@ -1,29 +1,37 @@
 import {Link} from './link.mjs';
-import {ListIterator} from './list_iterator.mjs';
 
-export function List(spec) {
+export function FirstLastList(spec) {
   let first = undefined;
+  let last = undefined;
 
   let isEmpty = function() {
     return first === undefined;
   }
 
-  let getFirst = function() {
-    return first;
-  }
-
-  let setFirst = function(link) {
-    first = link;
-  }
-
   let insertFirst = function(data) {
     let newLink = Link({data});
+    if (isEmpty()) {
+      last = newLink; // newLink <- last
+    }
     newLink.setNext(first); // newLink -> old first
     first = newLink; // first -> newLink
   }
 
+  let insertLast = function(data) {
+    let newLink = Link({data});
+    if (isEmpty()) {
+      first = newLink; // first -> newLink
+    } else {
+      last.setNext(newLink); // oldLast -> newLink
+    }
+    last = newLink; // newLink <- last
+  }
+
   let deleteFirst = function() {
     let temp = first;
+    if (first === last) {
+      last = undefined; // undefined <- last
+    }
     first = first.getNext(); // first -> old next
     return temp;
   }
@@ -46,6 +54,9 @@ export function List(spec) {
     while (iterator) {
       if (iterator.getData() === key) {
         if (iterator === first) {
+          if (first === last) {
+            last = undefined; // undefined <- last
+          }
           first = first.getNext();
         } else {
           previous.setNext(iterator.getNext());
@@ -56,11 +67,6 @@ export function List(spec) {
       iterator = iterator.getNext();
     }
     return undefined;
-  }
-
-  let getIterator = function() {
-    let iterator = ListIterator({current: first, list: this});
-    return iterator;
   }
 
   let display = function() {
@@ -76,27 +82,33 @@ export function List(spec) {
 
   return Object.freeze({
     isEmpty,
-    getFirst,
-    setFirst,
     insertFirst,
+    insertLast,
     deleteFirst,
     find,
     deleteLink,
-    getIterator,
     display
   })
 }
 
-let list = List();
+let list = FirstLastList();
 
 list.insertFirst(22);
 list.insertFirst(44);
 list.insertFirst(66);
-list.insertFirst(88);
+
+list.insertLast(11);
+list.insertLast(33);
+list.insertLast(55);
 
 list.display();
 
-let f = list.find(44);
+list.deleteFirst();
+list.deleteFirst();
+
+list.display();
+
+let f = list.find(55);
 
 if (f !== undefined) {
   console.log("Found link with key " + f.getData());
@@ -104,7 +116,7 @@ if (f !== undefined) {
   console.log("Can't find link");
 }
 
-let d = list.deleteLink(44);
+let d = list.deleteLink(33);
 
 if (d !== undefined) {
   console.log("Deleted link with key " + d.getData());
@@ -113,67 +125,3 @@ if (d !== undefined) {
 }
 
 list.display();
-
-while (!list.isEmpty()) {
-  console.log("deleted ", list.deleteFirst().getData());
-}
-
-list.display();
-
-let list2 = List();
-let iter1 = list2.getIterator();
-
-iter1.insertAfter(20);
-iter1.insertAfter(40);
-iter1.insertAfter(80);
-iter1.insertBefore(60);
-
-list2.display();
-
-iter1.reset();
-iter1.nextLink();
-iter1.nextLink();
-console.log(iter1.getCurrent().getData());
-
-iter1.insertBefore(100);
-iter1.insertAfter(7);
-
-list2.display();
-
-console.log(iter1.deleteCurrent());
-
-list2.display();
-
-iter1.reset();
-iter1.getCurrent().display();
-process.stdout.write(' ');
-while (!iter1.atEnd()) {
-  iter1.nextLink();
-  iter1.getCurrent().display();
-  process.stdout.write(' ');
-}
-console.log('\n');
-
-let list3 = new List();
-let iter2 = list3.getIterator();
-
-iter2.insertAfter(21);
-iter2.insertAfter(40);
-iter2.insertAfter(30);
-iter2.insertAfter(7);
-iter2.insertAfter(45);
-
-list3.display();
-iter2.reset();
-
-if (iter2.getCurrent().getData() % 3 === 0) {
-  iter2.deleteCurrent();
-}
-while (!iter2.atEnd()) {
-  iter2.nextLink();
-  if (iter2.getCurrent().getData() % 3 === 0) {
-    iter2.deleteCurrent();
-  }
-}
-
-list3.display();
