@@ -26,10 +26,10 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     nElems++;
   }
 
-  let find = function(searchKey) {
+  let find = function(key) {
     let j;
     for (j = 0; j < nElems; j++) {
-      if (equal(a[j], searchKey)) {
+      if (equal(a[j], key)) {
         break;
       }
     }
@@ -106,6 +106,31 @@ export function HighArray(spec = {a: [], nElems: 0}) {
 
     for (let i = 0; i < nElems; i++) {
       a[i] = list.remove().getData();
+    }
+  }
+
+  let recMergeSort = function(workspace = [], l = 0, u = nElems - 1) {
+    if (l === u) {
+      return;
+    } else {
+      const m = Math.floor((l+u)/2);
+
+      recMergeSort(workspace, l, m);
+      recMergeSort(workspace, m+1, u);
+
+      // merge
+      let [i, j, k] = [l, m + 1, 0];
+
+      while (i <= m && j <= u) {
+        workspace[k++] = a[i] < a[j] ? a[i++] : a[j++];
+      }
+      while (i <= m) { workspace[k++] = a[i++]; }
+      while (j <= u) { workspace[k++] = a[j++]; }
+
+      // write workspace to a
+      for (k = 0; k < u - l + 1; k++) {
+        a[l+k] = workspace[k];
+      }
     }
   }
 
@@ -226,6 +251,7 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     selectSort,
     insertSort,
     listInsertSort,
+    recMergeSort,
     display,
     getSize,
     // pp
@@ -253,12 +279,12 @@ const main = async () => {
   arr.display();
   console.log(arr.getSize());
 
-  let searchKey = 33;
-  let result = arr.find(searchKey);
+  let key = 33;
+  let result = arr.find(key);
   if (result) {
-    console.log("Found", searchKey, "at index", result);
+    console.log("Found", key, "at index", result);
   } else {
-    console.log("Can't find", searchKey);
+    console.log("Can't find", key);
   }
 
   arr.remove(0);
@@ -273,6 +299,7 @@ const main = async () => {
   //arr.selectSort();
   arr.insertSort();
   //await arr.listInsertSort();
+  //arr.recMergeSort();
   arr.display();
 
   // pp 2.3
@@ -319,7 +346,7 @@ const main = async () => {
   if (resultIndex) {
     console.log("Found at index", resultIndex);
   } else {
-    console.log("Can't find searchKey");
+    console.log("Can't find key");
   }
 
   people.remove({ lastName: "Smith" });

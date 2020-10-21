@@ -42,22 +42,38 @@ export function OrdArray(spec = {a: [], nElems: 0}) {
     nElems++;
   }
 
-  let find = function(searchKey) {
+  let find = function(key) {
     let l = 0;
     let u = nElems - 1;
     let i;
 
     while (l <= u) {
       i = Math.floor((l+u)/2);
-      if (searchKey === a[i]) {
+      if (key === a[i]) {
         return i;
-      } else if (searchKey < a[i]) {
+      } else if (key < a[i]) {
         u = i - 1;
-      } else if (searchKey > a[i]) {
+      } else if (key > a[i]) {
         l = i + 1;
       }
     }
     return -1;
+  }
+
+  let recFind = function(key, l = 0, u = nElems - 1) {
+    if (l > u) {
+      return -1;
+    }
+
+    const i = Math.floor((l+u)/2);
+
+    if (key === a[i]) {
+      return i;
+    } else if (key < a[i]) {
+      return recFind(key, l, i-1);
+    } else if (key > a[i]) {
+      return recFind(key, i+1, u);
+    }
   }
 
   let remove = function(value) {
@@ -116,6 +132,7 @@ export function OrdArray(spec = {a: [], nElems: 0}) {
     setArray,
     insert,
     find,
+    recFind,
     remove,
     display,
     size,
@@ -141,12 +158,12 @@ arr.insert(33);
 arr.display();
 console.log(arr.size());
 
-let searchKey = 0;
-let result = arr.find(searchKey);
+let key = 0;
+let result = arr.find(key);
 if (result !== -1) {
-  console.log("Found", searchKey, "at index", result);
+  console.log("Found", key, "at index", result);
 } else {
-  console.log("Can't find", searchKey);
+  console.log("Can't find", key);
 }
 
 arr.remove(0);
