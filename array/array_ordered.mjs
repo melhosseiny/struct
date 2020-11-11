@@ -141,54 +141,58 @@ export function OrdArray(spec = {a: [], nElems: 0}) {
   });
 }
 
-let arr = OrdArray();
+const main = () => {
+  let arr = OrdArray();
 
-// init array with 10 items
-arr.insert(77);
-arr.insert(99);
-arr.insert(44);
-arr.insert(55);
-arr.insert(22);
-arr.insert(88);
-arr.insert(11);
-arr.insert(0);
-arr.insert(66);
-arr.insert(33);
+  // init array with 10 items
+  arr.insert(77);
+  arr.insert(99);
+  arr.insert(44);
+  arr.insert(55);
+  arr.insert(22);
+  arr.insert(88);
+  arr.insert(11);
+  arr.insert(0);
+  arr.insert(66);
+  arr.insert(33);
 
-arr.display();
-console.log(arr.size());
+  arr.display();
+  console.log(arr.size());
 
-let key = 0;
-let result = arr.find(key);
-if (result !== -1) {
-  console.log("Found", key, "at index", result);
-} else {
-  console.log("Can't find", key);
+  let key = 0;
+  let result = arr.find(key);
+  if (result !== -1) {
+    console.log("Found", key, "at index", result);
+  } else {
+    console.log("Can't find", key);
+  }
+
+  arr.remove(0);
+  arr.remove(55);
+  arr.remove(99);
+
+  arr.display();
+  console.log(arr.size());
+
+  // pp
+  let arr_a = OrdArray();
+  arr_a.insert(77);
+  arr_a.insert(99);
+  arr_a.insert(33);
+  arr_a.insert(55);
+
+  let arr_b = OrdArray();
+  arr_b.insert(22);
+  arr_b.insert(44);
+  arr_b.insert(11);
+  arr_b.insert(0);
+  arr_b.insert(54);
+  arr_b.insert(98);
+
+  let arr_c = arr_a.merge(arr_b);
+
+  console.log("merge");
+  arr_c.display();
 }
 
-arr.remove(0);
-arr.remove(55);
-arr.remove(99);
-
-arr.display();
-console.log(arr.size());
-
-// pp
-let arr_a = OrdArray();
-arr_a.insert(77);
-arr_a.insert(99);
-arr_a.insert(33);
-arr_a.insert(55);
-
-let arr_b = OrdArray();
-arr_b.insert(22);
-arr_b.insert(44);
-arr_b.insert(11);
-arr_b.insert(0);
-arr_b.insert(54);
-arr_b.insert(98);
-
-let arr_c = arr_a.merge(arr_b);
-
-console.log("merge");
-arr_c.display();
+//main();

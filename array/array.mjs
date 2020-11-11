@@ -82,17 +82,32 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     }
   }
 
-  let insertSort = function(compare = defaultCompare) {
+  let hSort = function(h, compare) {
     let temp;
 
-    for (let i = 1; i < nElems; i++) {
+    for (let i = h; i < nElems; i++) {
       temp = a[i];
       let j = i;
-      for (j = i; j > 0; j--) {
-        if (compare(a[j-1], temp) === -1) { break; }
-        else { a[j] = a[j-1]; }
+      for (j = i; j > h - 1; j -= h) {
+        if (compare(a[j-h], temp) === -1) { break; }
+        else { a[j] = a[j-h]; }
       }
       a[j] = temp;
+    }
+  }
+
+  let insertSort = function(compare = defaultCompare) {
+    hSort(1, compare);
+  }
+
+  let shellSort = function(compare = defaultCompare) {
+    let h = 1;
+    while (h <= nElems / 3) {
+      h = h*3 + 1; // knuth interval sequence
+    }
+    while (h > 0) {
+      hSort(h, compare);
+      h = (h - 1) / 3;
     }
   }
 
@@ -134,6 +149,28 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     }
   }
 
+  let recQuickSort = function(left = 0, right = a.length - 1) {
+    if (right - left <= 0) {
+      return;
+    } else {
+      const part = partition(a[right], left, right - 1);
+      swap(right, part);
+      recQuickSort(left, part - 1);
+      recQuickSort(part + 1, right);
+    }
+  }
+
+  let recQuickSort2 = function(left = 0, right = a.length - 1) {
+    if (right - left + 1 <= 3) {
+      manualSort(left, right);
+    } else {
+      const part = partition(medianOf3(left, right), left, right - 2);
+      swap(right - 1, part);
+      recQuickSort(left, part - 1);
+      recQuickSort(part + 1, right);
+    }
+  }
+
   let equal = function(a, b) {
     if (typeof b === 'object') {
       const entries = Object.entries(b);
@@ -158,6 +195,45 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     let temp = a[two];
     a[two] = a[one];
     a[one] = temp;
+  }
+
+  let partition = function(pivot, left = 0, right = a.length - 1) {
+    let leftPtr = left - 1;
+    let rightPtr = right + 1;
+
+    while (leftPtr < rightPtr) {
+      while (leftPtr < rightPtr && a[++leftPtr] < pivot) {}
+      while (rightPtr > leftPtr && a[--rightPtr] > pivot) {}
+      swap(leftPtr, rightPtr);
+    }
+
+    return leftPtr;
+  }
+
+  let medianOf3 = function(left = 0, right = a.length - 1) {
+    const center = Math.floor((left + right) / 2);
+
+    if (a[left] > a[center]) { swap(left, center); }
+    if (a[left] > a[right]) { swap(left, right); }
+    if (a[center] > a[right]) { swap(center, right); }
+
+    swap(center, right - 1);
+
+    return a[right - 1];
+  }
+
+  let manualSort = function(left, right) {
+    const size = right - left + 1;
+
+    if (size <= 1) {
+      return;
+    } else if (size === 2) {
+      if (a[left] > a[right]) { swap(left, right); }
+    } else {
+      if (a[left] > a[right - 1]) { swap(left, right - 1); }
+      if (a[left] > a[right]) { swap(left, right); }
+      if (a[right - 1] > a[right]) { swap(right - 1, right); }
+    }
   }
 
   let display = function() {
@@ -250,8 +326,11 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     bubbleSort,
     selectSort,
     insertSort,
+    shellSort,
     listInsertSort,
     recMergeSort,
+    recQuickSort,
+    recQuickSort2,
     display,
     getSize,
     // pp
@@ -298,8 +377,10 @@ const main = async () => {
   //arr.bubbleSort();
   //arr.selectSort();
   arr.insertSort();
+  //arr.shellSort();
   //await arr.listInsertSort();
   //arr.recMergeSort();
+  //arr.recQuickSort2();
   arr.display();
 
   // pp 2.3
@@ -362,4 +443,4 @@ const main = async () => {
   people.display();
 }
 
-main();
+//main();
