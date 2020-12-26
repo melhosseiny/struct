@@ -1,9 +1,10 @@
 {
-  "name": "struct",
+  "name": "@melhosseiny/struct",
   "version": "0.0.1",
   "description": "Data structure library for JavaScript",
   "license": "CC-BY-NC-ND-4.0",
   "author": "Mostafa Elshamy",
+  "main": "index.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/melhosseiny/struct.git"
@@ -21,5 +22,11 @@
     "@babel/preset-env": "^7.9.0",
     "babel-jest": "^25.2.4",
     "jest": "^25.2.4"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

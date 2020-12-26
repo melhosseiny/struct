@@ -7,13 +7,9 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 | stack            | Complete    | Yes   |
 | queue            | Complete    | Yes   |
 | linkedlist       | Complete    |       |
-| tree_binary      | In progress |       |
+| tree_binary      | Complete    |       |
 | tree_rb          | Not started |       |
 | tree_234         | Not started |       |
 | hash             | Not started |       |
 | heap             | Not started |       |
 | graph            | In progress |       |
-
-This project uses the experimental ESM Module loader
-
-    node --experimental-modules stack.mjs

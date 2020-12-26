@@ -118,31 +118,35 @@ export function Graph(spec = {vertexList: [], adjMat: [], nVerts: 0, stack: Stac
   });
 }
 
-let graph = Graph();
+const main = () => {
+  let graph = Graph();
 
-let a = graph.addVertex('a');
-let b = graph.addVertex('b');
-let c = graph.addVertex('c');
-let d = graph.addVertex('d');
-let e = graph.addVertex('e');
-let f = graph.addVertex('f');
-let g = graph.addVertex('g');
-let h = graph.addVertex('h');
-let i = graph.addVertex('i');
+  let a = graph.addVertex('a');
+  let b = graph.addVertex('b');
+  let c = graph.addVertex('c');
+  let d = graph.addVertex('d');
+  let e = graph.addVertex('e');
+  let f = graph.addVertex('f');
+  let g = graph.addVertex('g');
+  let h = graph.addVertex('h');
+  let i = graph.addVertex('i');
 
-graph.addEdge(a,b);
-graph.addEdge(b,f);
-graph.addEdge(f,h);
-graph.addEdge(a,c);
-graph.addEdge(a,d);
-graph.addEdge(d,g);
-graph.addEdge(g,i);
-graph.addEdge(a,e);
+  graph.addEdge(a,b);
+  graph.addEdge(b,f);
+  graph.addEdge(f,h);
+  graph.addEdge(a,c);
+  graph.addEdge(a,d);
+  graph.addEdge(d,g);
+  graph.addEdge(g,i);
+  graph.addEdge(a,e);
 
-console.log("performing dfs");
-graph.dfs();
-console.log("performing bfs");
-graph.bfs();
+  console.log("performing dfs");
+  graph.dfs();
+  console.log("performing bfs");
+  graph.bfs();
 
-graph.displayVertexList();
-graph.displayAdjMat();
+  graph.displayVertexList();
+  graph.displayAdjMat();
+}
+
+//main();

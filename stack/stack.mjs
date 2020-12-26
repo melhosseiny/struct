@@ -38,74 +38,78 @@ export function Stack(spec = {a: [], nElems: 0}) {
   });
 }
 
-let stack = Stack({a: [], nElemns: 10});
-stack.push(20);
-stack.push(40);
-stack.push(60);
-stack.push(80);
+const main = () => {
+  let stack = Stack({a: [], nElemns: 10});
+  stack.push(20);
+  stack.push(40);
+  stack.push(60);
+  stack.push(80);
 
-while (!stack.isEmpty()) {
-  let value = stack.pop();
-  console.log(value);
-}
+  while (!stack.isEmpty()) {
+    let value = stack.pop();
+    console.log(value);
+  }
 
-try {
-  stack.pop();
-} catch (e) {
-  console.log(e);
-}
+  try {
+    stack.pop();
+  } catch (e) {
+    console.log(e);
+  }
 
-// reversing a word
-let word = "part"
-let reverser = Stack({a: [], nElems: word.length})
+  // reversing a word
+  let word = "part"
+  let reverser = Stack({a: [], nElems: word.length})
 
-for (let i = 0; i < word.length; i++) {
-  reverser.push(word.charAt(i));
-}
-let reverse = ""
-while (!reverser.isEmpty()) {
-  reverse += reverser.pop();
-}
-console.log(reverse);
+  for (let i = 0; i < word.length; i++) {
+    reverser.push(word.charAt(i));
+  }
+  let reverse = ""
+  while (!reverser.isEmpty()) {
+    reverse += reverser.pop();
+  }
+  console.log(reverse);
 
-// delimiter matching
-let expr = "a{b(c[d]e)f}";
-//let expr = "a{b(c]d}e";
-//let expr = "a{b(c[d]e)f";
-console.log(expr);
-let checker = Stack({a: [], nElems: expr.length});
+  // delimiter matching
+  let expr = "a{b(c[d]e)f}";
+  //let expr = "a{b(c]d}e";
+  //let expr = "a{b(c[d]e)f";
+  console.log(expr);
+  let checker = Stack({a: [], nElems: expr.length});
 
-try {
-  for(let i = 0; i < expr.length; i++) {
-    let ch = expr.charAt(i);
-    switch(ch) {
-      case '{':
-      case '[':
-      case '(':
-        checker.push(ch);
-        break;
-      case '}':
-      case ']':
-      case ')':
-        if (!checker.isEmpty()) {
-          let chx = checker.pop();
-          if (ch === '}' && chx !== '{' ||
-              ch === ']' && chx !== '[' ||
-              ch === ')' && chx !== '(') {
+  try {
+    for(let i = 0; i < expr.length; i++) {
+      let ch = expr.charAt(i);
+      switch(ch) {
+        case '{':
+        case '[':
+        case '(':
+          checker.push(ch);
+          break;
+        case '}':
+        case ']':
+        case ')':
+          if (!checker.isEmpty()) {
+            let chx = checker.pop();
+            if (ch === '}' && chx !== '{' ||
+                ch === ']' && chx !== '[' ||
+                ch === ')' && chx !== '(') {
+              throw "Error: " + ch + " at " + i;
+            }
+          } else {
             throw "Error: " + ch + " at " + i;
           }
-        } else {
-          throw "Error: " + ch + " at " + i;
-        }
-        break;
-      default:
-        break;
+          break;
+        default:
+          break;
+      }
     }
+    if (!checker.isEmpty()) {
+      throw "Error: missing right delimiter"
+    }
+    console.log(true);
+  } catch(e) {
+    console.log(e);
   }
-  if (!checker.isEmpty()) {
-    throw "Error: missing right delimiter"
-  }
-  console.log(true);
-} catch(e) {
-  console.log(e);
 }
+
+//main();

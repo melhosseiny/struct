@@ -87,93 +87,97 @@ export function List(spec) {
   })
 }
 
-let list = List();
+const main = () => {
+  let list = List();
 
-list.insertFirst(22);
-list.insertFirst(44);
-list.insertFirst(66);
-list.insertFirst(88);
+  list.insertFirst(22);
+  list.insertFirst(44);
+  list.insertFirst(66);
+  list.insertFirst(88);
 
-list.display();
+  list.display();
 
-let f = list.find(44);
+  let f = list.find(44);
 
-if (f !== undefined) {
-  console.log("Found link with key " + f.getData());
-} else {
-  console.log("Can't find link");
-}
+  if (f !== undefined) {
+    console.log("Found link with key " + f.getData());
+  } else {
+    console.log("Can't find link");
+  }
 
-let d = list.deleteLink(44);
+  let d = list.deleteLink(44);
 
-if (d !== undefined) {
-  console.log("Deleted link with key " + d.getData());
-} else {
-  console.log("Can't delete link");
-}
+  if (d !== undefined) {
+    console.log("Deleted link with key " + d.getData());
+  } else {
+    console.log("Can't delete link");
+  }
 
-list.display();
+  list.display();
 
-while (!list.isEmpty()) {
-  console.log("deleted ", list.deleteFirst().getData());
-}
+  while (!list.isEmpty()) {
+    console.log("deleted ", list.deleteFirst().getData());
+  }
 
-list.display();
+  list.display();
 
-let list2 = List();
-let iter1 = list2.getIterator();
+  let list2 = List();
+  let iter1 = list2.getIterator();
 
-iter1.insertAfter(20);
-iter1.insertAfter(40);
-iter1.insertAfter(80);
-iter1.insertBefore(60);
+  iter1.insertAfter(20);
+  iter1.insertAfter(40);
+  iter1.insertAfter(80);
+  iter1.insertBefore(60);
 
-list2.display();
+  list2.display();
 
-iter1.reset();
-iter1.nextLink();
-iter1.nextLink();
-console.log(iter1.getCurrent().getData());
-
-iter1.insertBefore(100);
-iter1.insertAfter(7);
-
-list2.display();
-
-console.log(iter1.deleteCurrent());
-
-list2.display();
-
-iter1.reset();
-iter1.getCurrent().display();
-process.stdout.write(' ');
-while (!iter1.atEnd()) {
+  iter1.reset();
   iter1.nextLink();
+  iter1.nextLink();
+  console.log(iter1.getCurrent().getData());
+
+  iter1.insertBefore(100);
+  iter1.insertAfter(7);
+
+  list2.display();
+
+  console.log(iter1.deleteCurrent());
+
+  list2.display();
+
+  iter1.reset();
   iter1.getCurrent().display();
   process.stdout.write(' ');
-}
-console.log('\n');
+  while (!iter1.atEnd()) {
+    iter1.nextLink();
+    iter1.getCurrent().display();
+    process.stdout.write(' ');
+  }
+  console.log('\n');
 
-let list3 = new List();
-let iter2 = list3.getIterator();
+  let list3 = new List();
+  let iter2 = list3.getIterator();
 
-iter2.insertAfter(21);
-iter2.insertAfter(40);
-iter2.insertAfter(30);
-iter2.insertAfter(7);
-iter2.insertAfter(45);
+  iter2.insertAfter(21);
+  iter2.insertAfter(40);
+  iter2.insertAfter(30);
+  iter2.insertAfter(7);
+  iter2.insertAfter(45);
 
-list3.display();
-iter2.reset();
+  list3.display();
+  iter2.reset();
 
-if (iter2.getCurrent().getData() % 3 === 0) {
-  iter2.deleteCurrent();
-}
-while (!iter2.atEnd()) {
-  iter2.nextLink();
   if (iter2.getCurrent().getData() % 3 === 0) {
     iter2.deleteCurrent();
   }
+  while (!iter2.atEnd()) {
+    iter2.nextLink();
+    if (iter2.getCurrent().getData() % 3 === 0) {
+      iter2.deleteCurrent();
+    }
+  }
+
+  list3.display();
 }
 
-list3.display();
+//main();

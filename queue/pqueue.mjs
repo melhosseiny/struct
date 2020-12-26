@@ -57,18 +57,22 @@ export function PQueue(spec = {a: [], nElems: 0}) {
   })
 }
 
-let q = PQueue({a: [], nElems: 5});
+const main = () => {
+  let q = PQueue({a: [], nElems: 5});
 
-try {
-  q.insert(30);
-  q.insert(50);
-  q.insert(10);
-  q.insert(40);
-  q.insert(20);
+  try {
+    q.insert(30);
+    q.insert(50);
+    q.insert(10);
+    q.insert(40);
+    q.insert(20);
 
-  while (!q.isEmpty()) {
-    console.log(q.remove());
+    while (!q.isEmpty()) {
+      console.log(q.remove());
+    }
+  } catch (e) {
+    console.log(e);
   }
-} catch (e) {
-  console.log(e);
 }
+
+//main();
