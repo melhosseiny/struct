@@ -3,13 +3,17 @@ import {Node} from './node.mjs';
 export function Tree(spec) {
   let root = undefined;
 
-  let find = function(key) {
+  let getRoot = function() {
+    return root;
+  }
+
+  let find = function(key, compare = defaultCompare) {
     let current = root;
 
     while (current) {
-      if (key === current.getData()) {
+      if (compare(key, current.getData()) === -1) {
         break;
-      } else if (key < current.getData()) {
+      } else if (compare(key, current.getData()) === -1) {
         current = current.getLeftChild();
       } else {
         current = current.getRightChild();
@@ -19,7 +23,7 @@ export function Tree(spec) {
     return current;
   }
 
-  let insert = function(value) {
+  let insert = function(value, compare = defaultCompare) {
     let node = Node({ data: value });
 
     if (!root) {
@@ -30,7 +34,7 @@ export function Tree(spec) {
       while (current) {
         parent = current;
 
-        if (value < current.getData()) {
+        if (compare(value, current.getData()) === -1) {
           current = current.getLeftChild();
 
           if (!current) {
@@ -49,13 +53,13 @@ export function Tree(spec) {
     }
   }
 
-  let deleteNode = function(key) {
+  let deleteNode = function(key, compare = defaultCompare) {
     let [current, parent] = [root, undefined];
 
     while (current) {
-      if (key === current.getData()) {
+      if (compare(key, current.getData()) === 0) {
         break;
-      } else if (key < current.getData()) {
+      } else if (compare(key, current.getData()) === -1) {
         parent = current;
         current = current.getLeftChild();
       } else {
@@ -69,7 +73,7 @@ export function Tree(spec) {
         // leaf node
         if (current === root) {
           root = undefined;
-        } else if (key < parent.getData()) {
+        } else if (compare(key, parent.getData())) {
           parent.setLeftChild(undefined);
         } else {
           parent.setRightChild(undefined);
@@ -78,7 +82,7 @@ export function Tree(spec) {
         // has left child
         if (current === root) {
           root = current.getLeftChild();
-        } else if (key < parent.getData()) {
+        } else if (compare(key, parent.getData())) {
           parent.setLeftChild(current.getLeftChild());
         } else {
           parent.setRightChild(current.getLeftChild());
@@ -87,7 +91,7 @@ export function Tree(spec) {
         // has right child
         if (current === root) {
           root = current.getRightChild();
-        } else if (key < parent.getData()) {
+        } else if (compare(key, parent.getData()) === -1) {
           parent.setLeftChild(current.getRightChild());
         } else {
           parent.setRightChild(current.getRightChild());
@@ -98,7 +102,7 @@ export function Tree(spec) {
 
         if (current === root) {
           root = successor;
-        } else if (key < parent.getData()) {
+        } else if (compare(key, parent.getData()) === -1) {
           parent.setLeftChild(successor);
         } else {
           parent.setRightChild(successor);
@@ -183,7 +187,17 @@ export function Tree(spec) {
     process.stdout.write('\n');
   }
 
+  const defaultCompare = function(a, b) {
+    if (a < b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
+
   return Object.freeze({
+    getRoot,
     insert,
     deleteNode,
     find,
@@ -224,4 +238,4 @@ const main = () => {
   tree.traverse();
 }
 
-//main();
+// main();
