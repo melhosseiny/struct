@@ -91,37 +91,41 @@ export function FirstLastList(spec) {
   })
 }
 
-let list = FirstLastList();
+const main = () => {
+  let list = FirstLastList();
 
-list.insertFirst(22);
-list.insertFirst(44);
-list.insertFirst(66);
+  list.insertFirst(22);
+  list.insertFirst(44);
+  list.insertFirst(66);
 
-list.insertLast(11);
-list.insertLast(33);
-list.insertLast(55);
+  list.insertLast(11);
+  list.insertLast(33);
+  list.insertLast(55);
 
-list.display();
+  list.display();
 
-list.deleteFirst();
-list.deleteFirst();
+  list.deleteFirst();
+  list.deleteFirst();
 
-list.display();
+  list.display();
 
-let f = list.find(55);
+  let f = list.find(55);
 
-if (f !== undefined) {
-  console.log("Found link with key " + f.getData());
-} else {
-  console.log("Can't find link");
+  if (f !== undefined) {
+    console.log("Found link with key " + f.getData());
+  } else {
+    console.log("Can't find link");
+  }
+
+  let d = list.deleteLink(33);
+
+  if (d !== undefined) {
+    console.log("Deleted link with key " + d.getData());
+  } else {
+    console.log("Can't delete link");
+  }
+
+  list.display();
 }
 
-let d = list.deleteLink(33);
-
-if (d !== undefined) {
-  console.log("Deleted link with key " + d.getData());
-} else {
-  console.log("Can't delete link");
-}
-
-list.display();
+// main();

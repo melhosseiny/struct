@@ -8,6 +8,14 @@ export function DoublyLinkedList(spec) {
     return first === undefined;
   }
 
+  let getFirst = function() {
+    return first;
+  }
+
+  let getLast = function() {
+    return last;
+  }
+
   let insertFirst = function(data) {
     let newLink = DoubleLink({data});
 
@@ -56,14 +64,22 @@ export function DoublyLinkedList(spec) {
 
   let deleteFirst = function() {
     let temp = first;
-    first.getNext().setPrevious(undefined); // undefined <- old next
+    if (first.getNext() === undefined) {
+      last = undefined;
+    } else {
+      first.getNext().setPrevious(undefined); // undefined <- old next
+    }
     first = first.getNext(); // first -> old next
     return temp;
   }
 
   let deleteLast = function() {
     let temp = last;
-    last.getPrevious().setNext(undefined); // old previous -> undefined
+    if (last.getPrevious() === undefined) {
+      first = undefined;
+    } else {
+      last.getPrevious().setNext(undefined); // old previous -> undefined
+    }
     last = last.getPrevious(); // last -> old previous
     return temp;
   }
@@ -116,6 +132,8 @@ export function DoublyLinkedList(spec) {
 
   return Object.freeze({
     isEmpty,
+    getFirst,
+    getLast,
     insertFirst,
     insertLast,
     insertAfter,
@@ -127,26 +145,30 @@ export function DoublyLinkedList(spec) {
   })
 }
 
-let list = DoublyLinkedList();
+const main = () => {
+  let list = DoublyLinkedList();
 
-list.insertFirst(22);
-list.insertFirst(44);
-list.insertFirst(66);
+  list.insertFirst(22);
+  list.insertFirst(44);
+  list.insertFirst(66);
 
-list.insertLast(11);
-list.insertLast(33);
-list.insertLast(55);
+  list.insertLast(11);
+  list.insertLast(33);
+  list.insertLast(55);
 
-list.displayForward();
-list.displayBackward();
+  list.displayForward();
+  list.displayBackward();
 
-list.deleteFirst();
-list.deleteLast();
-list.deleteKey(11);
+  list.deleteFirst();
+  list.deleteLast();
+  list.deleteKey(11);
 
-list.displayForward();
+  list.displayForward();
 
-list.insertAfter(22, 77);
-list.insertAfter(33, 88);
+  list.insertAfter(22, 77);
+  list.insertAfter(33, 88);
 
-list.displayForward();
+  list.displayForward();
+}
+
+// main();

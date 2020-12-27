@@ -171,6 +171,35 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     }
   }
 
+  // O(nlog n) time, O(n) space
+  let radix_sort = async function(radix) {
+    const {FirstLastList} = await import('../list/list_first_last.mjs');
+
+    let groups = [];
+
+    for (let p = 0; p < radix; p++) {
+      groups[p] = FirstLastList();
+    }
+
+    const d = Math.ceil(Math.log(getMax()) / Math.log(radix));
+
+    for (let i = d - 1; i >= 0; i--) {
+      for (let j = 0; j < nElems; j++) {
+        groups[+a[j].toString(radix).padStart(d, 0).charAt(i)].insertLast(a[j])
+      }
+
+      let [k, p] = [0, 0];
+
+      while (k < nElems) {
+        if (!groups[p].isEmpty()) {
+          a[k++] = groups[p].deleteFirst().getData();
+        } else {
+          p++;
+        }
+      }
+    }
+  }
+
   let equal = function(a, b) {
     if (typeof b === 'object') {
       const entries = Object.entries(b);
@@ -331,6 +360,7 @@ export function HighArray(spec = {a: [], nElems: 0}) {
     recMergeSort,
     recQuickSort,
     recQuickSort2,
+    radix_sort,
     display,
     getSize,
     // pp
@@ -376,11 +406,12 @@ const main = async () => {
   console.log("Sorted array:");
   //arr.bubbleSort();
   //arr.selectSort();
-  arr.insertSort();
+  //arr.insertSort();
   //arr.shellSort();
   //await arr.listInsertSort();
   //arr.recMergeSort();
   //arr.recQuickSort2();
+  await arr.radix_sort(2);
   arr.display();
 
   // pp 2.3
@@ -443,4 +474,4 @@ const main = async () => {
   people.display();
 }
 
-//main();
+// main();

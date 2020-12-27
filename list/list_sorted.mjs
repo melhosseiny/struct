@@ -62,19 +62,23 @@ export function SortedList(spec) {
   })
 }
 
-let list = SortedList();
+const main = () => {
+  let list = SortedList();
 
-list.insert(20);
-list.insert(40);
+  list.insert(20);
+  list.insert(40);
 
-list.display();
+  list.display();
 
-list.insert(10);
-list.insert(30);
-list.insert(50);
+  list.insert(10);
+  list.insert(30);
+  list.insert(50);
 
-list.display();
+  list.display();
 
-list.remove();
+  list.remove();
 
-list.display();
+  list.display();
+}
+
+// main();

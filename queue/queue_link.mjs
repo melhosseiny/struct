@@ -3,7 +3,6 @@ import {FirstLastList} from '../list/list_first_last.mjs';
 export function Queue() {
   let list = new FirstLastList();
 
-
   let front = 0;
   let rear = -1;
   let nItems = 0;
