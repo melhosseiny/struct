@@ -3,14 +3,14 @@ export function PQueue(spec = {a: [], nElems: 0}) {
 
   let nItems = 0;
 
-  let insert = function(v) {
+  let insert = function(v, compare = defaultCompare) {
     if (isFull()) { throw "Can't insert: queue is full" };
     if (nItems === 0) {
       a[0] = v;
     } else {
       let i;
       for (i = nItems; i > 0; i--) {
-        if (a[i-1] < v) {
+        if (compare(a[i-1], v) === -1) {
           a[i] = a[i-1];
         } else {
           break;
@@ -40,6 +40,15 @@ export function PQueue(spec = {a: [], nElems: 0}) {
 
   let size = function() {
     return nElems;
+  }
+
+  const defaultCompare = function(a, b) {
+    if (a < b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
+    }
+    return 0;
   }
 
   // for debugging
@@ -75,4 +84,4 @@ const main = () => {
   }
 }
 
-//main();
+// main();

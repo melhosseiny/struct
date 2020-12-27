@@ -8,7 +8,7 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 | queue            | Complete    | Yes   |
 | linkedlist       | Complete    |       |
 | tree_binary      | Complete    |       |
-| tree_rb          | Not started |       |
+| tree_rb          | In progress |       |
 | tree_234         | Not started |       |
 | hash             | Not started |       |
 | heap             | Not started |       |
