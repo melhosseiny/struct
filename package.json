@@ -10,7 +10,7 @@
     "url": "https://github.com/melhosseiny/struct.git"
   },
   "scripts": {
-    "test": "npx jest"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "bugs": {
     "url": "https://github.com/melhosseiny/struct/issues"
@@ -18,10 +18,7 @@
   "homepage": "https://github.com/melhosseiny/struct#readme",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "babel-jest": "^25.2.4",
-    "jest": "^25.2.4"
+    "@melhosseiny/icarus": "0.0.3"
   },
   "engines": {
     "node": "14.x"

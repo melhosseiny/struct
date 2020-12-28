@@ -323,7 +323,7 @@ export function HighArray(spec = {a: [], nElems: 0}) {
       }
     }
 
-    let lastSwapped = 0;
+    let removed_dups = 0;
 
     for (let i = 0; i < nElems; i++) {
       if (a[i] === undefined) {
@@ -334,14 +334,15 @@ export function HighArray(spec = {a: [], nElems: 0}) {
           }
           j++;
         }
+
         if (j < nElems) {
           swap(i, j);
-          lastSwapped = i;
+        } else if (j === nElems) {
+          removed_dups++;
         }
       }
     }
-
-    nElems = lastSwapped + 1;
+    nElems = nElems - removed_dups;
   }
 
   return Object.freeze({

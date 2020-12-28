@@ -2,10 +2,10 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 
 | Feature          | Status      | Tests |
 |------------------|-------------|-------|
-| array            | Complete    |       |
+| array            | Complete    | Some  |
 | array_ordered    | Complete    |       |
-| stack            | Complete    | Yes   |
-| queue            | Complete    | Yes   |
+| stack            | Complete    |       |
+| queue, pqueue    | Complete    | Yes   |
 | linkedlist       | Complete    |       |
 | tree_binary      | Complete    |       |
 | tree_rb          | In progress |       |
