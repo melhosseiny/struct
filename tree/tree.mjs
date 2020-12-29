@@ -11,7 +11,7 @@ export function Tree(spec) {
     let current = root;
 
     while (current) {
-      if (compare(key, current.getData()) === -1) {
+      if (compare(key, current.getData()) === 0) {
         break;
       } else if (compare(key, current.getData()) === -1) {
         current = current.getLeftChild();
@@ -214,13 +214,13 @@ const main = () => {
   tree.insert(25)
   tree.insert(75)
   tree.insert(12)
-  tree.insert(37)
-  tree.insert(43)
-  tree.insert(30)
-  tree.insert(33)
-  tree.insert(87)
-  tree.insert(93)
-  tree.insert(97)
+  // tree.insert(37)
+  // tree.insert(43)
+  // tree.insert(30)
+  // tree.insert(33)
+  // tree.insert(87)
+  // tree.insert(93)
+  // tree.insert(97)
 
   tree.traverse();
 
