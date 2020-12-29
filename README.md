@@ -6,10 +6,10 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 | array_ordered    | Complete    |       |
 | stack            | Complete    |       |
 | queue, pqueue    | Complete    | Yes   |
-| linkedlist       | Complete    |       |
+| list             | Complete    |       |
 | tree_binary      | Complete    |       |
-| tree_rb          | In progress |       |
-| tree_234         | Not started |       |
+| tree_rb          | Complete    |       |
+| tree_234         | In progress |       |
 | hash             | Not started |       |
 | heap             | Not started |       |
 | graph            | In progress |       |
