@@ -1,4 +1,4 @@
-Data structures from Data Structures and Algorithms in Java by Robert Lafore implemented in JavaScript using classless OOP
+Data structures from Data Structures and Algorithms in Java by Robert Lafore implemented in JavaScript
 
 | Feature          | Status      | Tests |
 |------------------|-------------|-------|
@@ -9,7 +9,7 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 | list             | Complete    |       |
 | tree_binary      | Complete    |       |
 | tree_rb          | Complete    |       |
-| tree_234         | In progress |       |
+| tree_234         | Complete    |       |
 | hash             | Not started |       |
 | heap             | Not started |       |
 | graph            | In progress |       |

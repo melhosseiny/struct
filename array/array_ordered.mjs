@@ -40,6 +40,7 @@ export function OrdArray(spec = {a: [], nElems: 0}) {
 
     a[i] = value;
     nElems++;
+    return i;
   }
 
   let find = function(key) {
