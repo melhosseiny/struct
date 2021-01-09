@@ -10,6 +10,6 @@ Data structures from Data Structures and Algorithms in Java by Robert Lafore imp
 | tree_binary      | Complete    |       |
 | tree_rb          | Complete    |       |
 | tree_234         | Complete    |       |
-| hash             | Not started |       |
+| hash             | Complete    |       |
 | heap             | Not started |       |
 | graph            | In progress |       |

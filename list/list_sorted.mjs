@@ -32,10 +32,36 @@ export function SortedList(spec) {
     return temp;
   }
 
-  let find = function(key) {
+  // delete is a reserved word
+  let deleteLink = function(key) {
+    let iterator = first;
+    let previous = undefined;
+
+    while (iterator) {
+      if (iterator.getData() > key) {
+        break;
+      }
+
+      if (iterator.getData() === key) {
+        if (iterator === first) {
+          first = first.getNext();
+        } else {
+          previous.setNext(iterator.getNext());
+        }
+
+        return iterator;
+      }
+
+      previous = iterator;
+      iterator = iterator.getNext();
+    }
+    return undefined;
+  }
+
+  let find = function(key, cmp = default_cmp) {
     let iterator = first;
     while (iterator) {
-      if (iterator.getData() === key) {
+      if (cmp(iterator.getData(), key) === 0) {
         return iterator;
       }
       iterator = iterator.getNext();
@@ -54,10 +80,16 @@ export function SortedList(spec) {
     process.stdout.write('\n');
   }
 
+  const default_cmp = (a, b) => {
+    return a < b ? -1 : (a > b ? 1 : 0);
+  }
+
   return Object.freeze({
     isEmpty,
     insert,
     remove,
+    deleteLink,
+    find,
     display
   })
 }
