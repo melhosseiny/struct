@@ -12,17 +12,6 @@ export function hash(spec = {arr: [], size: 10}) {
   // non-zero, less than size, size must be relatively prime to 5, 4, 3, 2
   let hash_fn_double = key => 5 - key % 5;
 
-  let hash_fn_str = key => {
-    let hash_val = key.charCodeAt(0) - 96;
-
-    for (let j = 1; j < key.length; j++) {
-      const letter = key.charCodeAt(j) - 96;
-      hash_val = hash_val * 27 + letter;
-    }
-
-    return hash_val % size;
-  }
-
   // first prime > min
   let get_prime = min => {
     for (let i = min; true; i++) {
@@ -61,7 +50,6 @@ export function hash(spec = {arr: [], size: 10}) {
 
     n_items++;
     load_factor = n_items / size;
-    console.log(load_factor);
   }
 
   let remove = (key) => {
@@ -111,17 +99,6 @@ export function hash(spec = {arr: [], size: 10}) {
       }
       i++;
     }
-  }
-
-  let get = key => {
-    const index = find(key, hash_fn_str);
-    return index !== false ? arr[index][1] : undefined;
-  }
-
-  let has = key => find(key, hash_fn_str) !== false;
-
-  let set = (key, val) => {
-    insert([key, val], hash_fn_str);
   }
 
   let display = () => {
