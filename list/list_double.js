@@ -1,4 +1,5 @@
-import {DoubleLink} from './link_double.mjs';
+import { DoubleLink } from "./link_double.js";
+import { write } from "../util/write.js";
 
 export function DoublyLinkedList(spec) {
   let first = undefined;
@@ -113,10 +114,10 @@ export function DoublyLinkedList(spec) {
     let iterator = first;
     while (iterator) {
       iterator.display();
-      process.stdout.write(' ');
+      write(' ');
       iterator = iterator.getNext();
     }
-    process.stdout.write('\n');
+    write('\n');
   }
 
   let displayBackward = function() {
@@ -124,10 +125,10 @@ export function DoublyLinkedList(spec) {
     let iterator = last;
     while (iterator) {
       iterator.display();
-      process.stdout.write(' ');
+      write(' ');
       iterator = iterator.getPrevious();
     }
-    process.stdout.write('\n');
+    write('\n');
   }
 
   return Object.freeze({

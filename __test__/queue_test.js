@@ -1,5 +1,5 @@
-import { jscheck } from "@melhosseiny/icarus";
-import { Queue } from "./../queue/queue.mjs";
+import jscheck from "https://raw.githubusercontent.com/melhosseiny/icarus/main/jscheck.js";
+import { Queue } from "./../queue/queue.js";
 
 const jsc = jscheck();
 

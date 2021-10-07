@@ -1,4 +1,4 @@
-import {FirstLastList} from '../list/list_first_last.mjs';
+import { FirstLastList } from "../list/list_first_last.js";
 
 export function Queue() {
   let list = new FirstLastList();

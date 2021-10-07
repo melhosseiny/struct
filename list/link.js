@@ -1,4 +1,4 @@
-import util from 'util';
+import { write } from "../util/write.js";
 
 export function Link(spec) {
   let {data} = spec;
@@ -20,8 +20,8 @@ export function Link(spec) {
     next = link;
   }
 
-  let display = function() {
-    process.stdout.write(util.format('%j', data));
+  let display = async function() {
+    write(data);
   }
 
   return Object.freeze({

@@ -1,4 +1,4 @@
-import util from 'util';
+import { write } from "../util/write.js";
 
 export function HighArray(spec = {a: [], nElems: 0}) {
   let {a,nElems} = spec;
@@ -112,7 +112,7 @@ export function HighArray(spec = {a: [], nElems: 0}) {
   }
 
   let listInsertSort = async function() {
-    const {SortedList} = await import('../list/list_sorted.mjs');
+    const {SortedList} = await import('../list/list_sorted.js');
 
     let list = SortedList();
     for (let i = 0; i < nElems; i++) {
@@ -173,7 +173,7 @@ export function HighArray(spec = {a: [], nElems: 0}) {
 
   // O(nlog n) time, O(n) space
   let radix_sort = async function(radix) {
-    const {FirstLastList} = await import('../list/list_first_last.mjs');
+    const {FirstLastList} = await import('../list/list_first_last.js');
 
     let groups = [];
 
@@ -266,10 +266,12 @@ export function HighArray(spec = {a: [], nElems: 0}) {
   }
 
   let display = function() {
-    //console.log(a);
     for (let j = 0; j < nElems; j++) {
-      process.stdout.write(util.format('%j', a[j]));
-      process.stdout.write(typeof a[j] === 'object' || j === nElems - 1 ? '\n' : ' ');
+      if (typeof a[j] === "object") {
+        console.log(a[j]);
+      } else {
+        write(a[j] + (j === nElems - 1 ? '\n' : ' '));
+      }
     }
   }
 

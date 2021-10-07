@@ -1,4 +1,5 @@
-import {Node} from './node.mjs';
+import { write } from "../util/write.js";
+import { Node } from "./node.js";
 
 export function Tree(spec) {
   let root = undefined;
@@ -158,7 +159,7 @@ export function Tree(spec) {
   let preOrder = function(node) {
     if (node) {
       node.display();
-      process.stdout.write(' ');
+      write(' ');
       preOrder(node.getLeftChild());
       preOrder(node.getRightChild());
     }
@@ -168,7 +169,7 @@ export function Tree(spec) {
     if (node) {
       inOrder(node.getLeftChild());
       node.display();
-      process.stdout.write(' ');
+      write(' ');
       inOrder(node.getRightChild());
     }
   }
@@ -178,13 +179,13 @@ export function Tree(spec) {
       inOrder(node.getLeftChild());
       inOrder(node.getRightChild());
       node.display();
-      process.stdout.write(' ');
+      write(' ');
     }
   }
 
   let traverse = function() {
     inOrder(root);
-    process.stdout.write('\n');
+    write('\n');
   }
 
   const defaultCompare = function(a, b) {

@@ -1,4 +1,5 @@
-import {Link} from './link.mjs';
+import { Link } from "./link.js";
+import { write } from "../util/write.js";
 
 export function SortedList(spec) {
   let first = undefined;
@@ -72,12 +73,13 @@ export function SortedList(spec) {
   let display = function() {
     console.log("List (first --> last)");
     let iterator = first;
+
     while (iterator) {
       iterator.display();
-      process.stdout.write(' ');
+      write(' ');
       iterator = iterator.getNext();
     }
-    process.stdout.write('\n');
+    write('\n');
   }
 
   const default_cmp = (a, b) => {

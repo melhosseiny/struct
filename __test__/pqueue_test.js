@@ -1,5 +1,5 @@
-import { jscheck } from "@melhosseiny/icarus";
-import { PQueue } from "./../queue/pqueue.mjs";
+import jscheck from "https://raw.githubusercontent.com/melhosseiny/icarus/main/jscheck.js";
+import { PQueue } from "./../queue/pqueue.js";
 
 const jsc = jscheck();
 

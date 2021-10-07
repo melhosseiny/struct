@@ -1,6 +1,6 @@
-import {Node} from './node.mjs';
-import {Tree} from './tree.mjs';
-import {PQueue} from '../queue/pqueue.mjs';
+import { Node } from "./node.js";
+import { Tree } from "./tree.js";
+import { PQueue } from "../queue/pqueue.js";
 
 function huffman(spec) {
   const { message } = spec;

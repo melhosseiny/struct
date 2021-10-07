@@ -1,4 +1,5 @@
-import {node} from './node_rb.mjs';
+import { write } from "../util/write.js";
+import { node } from "./node_rb.js";
 
 export function tree_rb(spec) {
   let root = undefined;
@@ -184,7 +185,7 @@ export function tree_rb(spec) {
   let pre_order = node => {
     if (node) {
       node.display();
-      process.stdout.write(' ');
+      write(' ');
       pre_order(node.get_left_child());
       pre_order(node.get_right_child());
     }
@@ -192,7 +193,7 @@ export function tree_rb(spec) {
 
   let traverse = () => {
     pre_order(root);
-    process.stdout.write('\n');
+    write('\n');
   }
 
   const default_cmp = (a, b) => {

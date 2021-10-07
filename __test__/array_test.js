@@ -1,5 +1,5 @@
-import { jscheck } from "@melhosseiny/icarus";
-import { HighArray } from "./../array/array.mjs";
+import jscheck from "https://raw.githubusercontent.com/melhosseiny/icarus/main/jscheck.js";
+import { HighArray } from "./../array/array.js";
 
 const jsc = jscheck();
 

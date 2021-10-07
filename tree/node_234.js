@@ -1,5 +1,5 @@
-import util from 'util';
-import { OrdArray } from '../array/array_ordered.mjs';
+import { write } from "../util/write.js";
+import { OrdArray } from '../array/array_ordered.js';
 
 export function node(spec = { data: [] }) {
   const ORDER = 4;
@@ -41,7 +41,7 @@ export function node(spec = { data: [] }) {
 
   let display = () => {
     for (let i = 0; i < items.size(); i++) {
-      process.stdout.write(util.format('/%j', items.getElem(i)));
+      write('/' + items.getElem(i));
     }
   }
 

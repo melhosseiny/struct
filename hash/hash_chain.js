@@ -1,4 +1,4 @@
-import { SortedList } from "../list/list_sorted.mjs";
+import { SortedList } from "../list/list_sorted.js";
 
 export function hash_chain(spec = { arr: [], size: 10}) {
   let { arr, size } = spec;

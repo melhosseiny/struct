@@ -1,4 +1,4 @@
-import {List} from '../list/list.mjs';
+import { List } from "../list/list.js";
 
 export function LinkStack(spec) {
   let list = List();

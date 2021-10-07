@@ -1,4 +1,5 @@
-import {node} from './node_234.mjs';
+import { write } from "../util/write.js";
+import { node } from "./node_234.js";
 
 export function tree_234(spec) {
   let root = node();
@@ -98,7 +99,7 @@ export function tree_234(spec) {
   let pre_order = node => {
     if (node) {
       node.display();
-      process.stdout.write('/ ');
+      write('/ ');
 
       for (let i = 0; i < 4; i++) {
         pre_order(node.get_children()[i]);
@@ -108,7 +109,7 @@ export function tree_234(spec) {
 
   let traverse = () => {
     pre_order(root);
-    process.stdout.write('\n');
+    write('\n');
   }
 
   const default_cmp = (a, b) => {

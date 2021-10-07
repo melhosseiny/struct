@@ -1,4 +1,4 @@
-import {Link} from './link.mjs';
+import { Link } from "./link.js";
 
 export function ListIterator(spec) {
   let { current, previous, list }  = spec;

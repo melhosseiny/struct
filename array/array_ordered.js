@@ -1,3 +1,5 @@
+import { write } from "../util/write.js";
+
 export function OrdArray(spec = {a: [], nElems: 0}) {
   let {a,nElems} = spec;
 
@@ -92,9 +94,9 @@ export function OrdArray(spec = {a: [], nElems: 0}) {
 
   let display = function() {
     for (let j = 0; j < nElems; j++) {
-      process.stdout.write(a[j] + " ");
+      write(a[j] + " ");
     }
-    process.stdout.write("\n");
+    write("\n");
   }
 
   let size = function() {
@@ -196,4 +198,4 @@ const main = () => {
   arr_c.display();
 }
 
-//main();
+// main();

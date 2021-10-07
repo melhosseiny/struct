@@ -1,4 +1,4 @@
-import util from 'util';
+import { write } from "../util/write.js";
 
 export function node(spec) {
   let { data } = spec;
@@ -15,7 +15,7 @@ export function node(spec) {
   let toggle_color = new_color => { color = color === 'r' ? 'b' : 'r'; }
 
   let display = () => {
-    process.stdout.write(util.format('%j/%s', data, color));
+    write(data + '/' + color);
   }
 
   return Object.freeze({

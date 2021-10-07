@@ -47,7 +47,8 @@ export function Queue(spec = {a: [], nElems: 0}) {
     peekFront,
     isFull,
     isEmpty,
-    size
+    size,
+    display
   })
 }
 
@@ -77,4 +78,4 @@ const main = () => {
   }
 }
 
-//main();
+// main();

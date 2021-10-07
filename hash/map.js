@@ -53,4 +53,4 @@ const main = () => {
   console.log(h_map.get('dogs'));
 }
 
-main();
+// main();

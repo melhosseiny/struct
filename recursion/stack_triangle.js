@@ -1,4 +1,4 @@
-import {Stack} from '../stack/stack.mjs';
+import { Stack } from "../stack/stack.js";
 
 let n = 100;
 let codePart = 1;

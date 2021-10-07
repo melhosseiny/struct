@@ -1,4 +1,4 @@
-import util from 'util';
+import { write } from "../util/write.js";
 
 export function Node(spec) {
   let {data} = spec;
@@ -30,7 +30,7 @@ export function Node(spec) {
   }
 
   let display = function() {
-    process.stdout.write(util.format('%j', data));
+    write(data);
   }
 
   return Object.freeze({
